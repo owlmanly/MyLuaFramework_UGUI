@@ -1,0 +1,19 @@
+ManifestFileVersion: 0
+CRC: 2211451613
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 07d27478e28aca3ca7cbdd6ad537517a
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 1033bf7ddfd4c6d43e7a6382c0a0a61a
+HashAppended: 0
+ClassTypes:
+- Class: 49
+  Script: {instanceID: 0}
+Assets:
+- Assets/Lua/UIFrame/UIBaseWindow.lua.bytes
+- Assets/Lua/UIFrame/UIResDefine.lua.bytes
+- Assets/Lua/UIFrame/UIManager.lua.bytes
+- Assets/Lua/UIFrame/UIRoot.lua.bytes
+Dependencies: []
