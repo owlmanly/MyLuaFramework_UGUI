@@ -176,6 +176,9 @@ public static class CustomSettings
         _GT(typeof(GUILayer)),
         _GT(typeof(RectTransform.Edge)),
 
+        //
+        _GT(typeof(UIHelper)),
+
     };
 
     public static List<Type> dynamicList = new List<Type>()

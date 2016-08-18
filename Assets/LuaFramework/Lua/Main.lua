@@ -4,11 +4,13 @@ require "Common/class"
 require "Common/functions"
 require "Common/utils"
 require "Common/define"
+require "UIFrame/UIResDefine"
 
 function Main()					
     print("lua Main")
     UI = require "UIFrame/UIManager"
-    
+    UI:ShowPage("UIMainPage")
+    UI:ShowPage("UITopBar")
 end
 
 --场景切换通知

@@ -94,9 +94,9 @@ function UIRoot:GetRoot(uiType)
   local parent = nil
   if uiType == UIType.Normal then
     parent = self.normalRoot
-  else if uiType == UIType.Fixed then
+  elseif uiType == UIType.Fixed then
     parent = self.fixedRoot
-  else if uiType == UIType.PopUp then
+  elseif uiType == UIType.PopUp then
     parent = self.popuRoot
   end
   return parent

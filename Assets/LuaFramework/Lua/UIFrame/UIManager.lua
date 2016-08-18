@@ -1,6 +1,7 @@
 --region *.lua
 --Date
 --此文件由[BabeLua]插件自动生成
+require "UIFrame/UIBasePage"
 
 local UIManager = {}
 
@@ -17,15 +18,16 @@ end
 
 --打开窗口
 function UIManager:ShowPage(pageId,fnCallback,pageData,isAsync)
-    
-    local pageName = UIPageID[pageId]
-    assert(pageName,"pageName not find")
+
+    local pagePath = UIPageID[pageId]
+    log("show page = " .. pageId)
+    assert(pagePath,"pagePath not find")
     local page = nil
-    if table.containKey(self.allPages,pageName) then 
-      page = self.allPages[pageName]
+    if table.containKey(self.allPages,pageId) then 
+      page = self.allPages[pageId]
     else
-      page = require(pageName).New()
-      self.allPages[pageName] = page
+      page = require(pagePath).New()
+      self.allPages[pageId] = page
     end
     
     page.pageData = pageData
@@ -38,51 +40,58 @@ end
 
 --
 function UIManager:_Show(page,fn)
-    if page.gameObjec == nil then
-      resMgr:LoadPrefab(page.abName, { page.abName }, function(objs)
-          local prefab = objs[1]
-          local go = GameObject.Instantiate(prefab);
+    if page.gameObject == nil then
+      log("abName = "..page.abName..AppConst.ExtName)
+      log("prefab = "..page.uiPrefab)
+      resMgr:LoadPrefab(page.abName..AppConst.ExtName, { page.uiPrefab }, function(objs)
+          local prefab = objs[0]
+          local go = GameObject.Instantiate(prefab)
           page.gameObject = go
+          self:_AnchorUIGameObject(page)
+          page:OnInit()
           page:OnShow()
+          self:_PopPage(page)
           if fn then
             fn()
           end
         end);
     else
       page:OnShow()
+      self:_PopPage(page)
       if fn then
         fn()
       end
     end
+    
 end
 
 function UIManager:_AsyncShow(page,fn)
     StartCoroutine(function(page,fn)
         _Show(page,fn)
-      end))
+      end)
 end
 
 function UIManager:_AnchorUIGameObject(page)
-  if page == nil || page.gameObject = nil then
+  if page == nil or page.gameObject == nil then
     return 
   end
   local parent = self.UIRoot:GetRoot(page.uiType)
-  page.gameOject.transform:SetParent(parent)
+  page.gameObject.transform:SetParent(parent.transform,false)
 
 end
 
 function UIManager:_PopPage(page)
   assert(page,"page is nil")
-  if self:_CheckNeedBack(page) then 
+  if self:_CheckNeedBack(page) == false then 
     return 
   end
   
   for key, var in ipairs(self.currentPageNodes) do
     if var == page then
-      self.currentPageNodes[key] = nil
+      table.remove(self.currentPageNodes,key)
     end
   end
-  table.insert(self.currentPageNodes)
+  table.insert(self.currentPageNodes,page)
   self:HideOldNodes(page)
 end
 
@@ -90,7 +99,7 @@ function UIManager:_CheckNeedBack(page)
   assert(page,"page is nil")
   if page.uiType == UIType.Fixed or page.uiType == UIType.PopUp then
     return false
-  else if page.uiMode == UIMode.DoNothing or page.uiMode == UIMode.NoNeedBack then 
+  elseif page.uiMode == UIMode.DoNothing or page.uiMode == UIMode.NoNeedBack then 
     return false
   end
   return true
@@ -101,7 +110,8 @@ function UIManager:HideOldNodes(page)
     return
   end
   if page.uiMode == UIMode.HideOther then
-    for i = table.nums(self.currentPageNodes)-1,0,-1 do
+    for i = table.nums(self.currentPageNodes)-1,1,-1 do
+      log("hideOldNode i = " .. i)
       local pageNode = self.currentPageNodes[i]
       if pageNode:isActive() then
         pageNode:OnHide()
@@ -112,16 +122,14 @@ end
 
 --隐藏窗口
 function UIManager:HidePage(pageId)
-    local pageName = UIPageID[pageId]
-    assert(pageName,"pageName not find")
-    local page = self.allPages[pageName]
-    assert(pageName,"page is nil")
-    _HidePage(page)
+    local page = self.allPages[pageId]
+    assert(page,"page is nil")
+    self:_HidePage(page)
 end
 
 function UIManager:_HidePage(page)
-    if pageNode:isActive() = false then
-        for key ,var ipairs(self.currentPageNodes) do
+    if page:isActive() == false then
+        for key ,var in ipairs(self.currentPageNodes) do
           if page == var then
             table.remove(self.currentPageNodes,key)
           end
@@ -136,9 +144,38 @@ function UIManager:_HidePage(page)
       page:OnHide()
     end
     
-    
+    if self:_CheckNeedBack(page) then
+      for key ,var in ipairs(self.currentPageNodes) do
+          if page == var then
+            table.remove(self.currentPageNodes,key)
+          end
+        end
+    end
+    page:OnHide()
   
 end
+
+function UIManager:AutoHidePage()
+  local num = table.nums(self.currentPageNodes)
+  if num <= 1 then
+    return
+  end
+  log("currentPageNodes num = " .. num)
+  local closePage 
+  if num > 0 then 
+    closePage = self.currentPageNodes[num]
+    table.remove(self.currentPageNodes,num)
+  end
+  num = table.nums(self.currentPageNodes)
+  log("after remove ,currentPageNodes num = " .. num)
+  if num > 0 then 
+    local prePage = self.currentPageNodes[num]
+    self:_Show(prePage)
+    closePage:OnHide()
+  end
+  
+end
+
 
 --隐藏所有已经打开的窗口
 function UIManager:HideAllShownPage()

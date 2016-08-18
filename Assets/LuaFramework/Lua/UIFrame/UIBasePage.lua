@@ -16,6 +16,10 @@ function UIBasePage:ctor()
     self.isAsyncUI = false
 end
 
+function UIBasePage:OnInit()
+  
+end
+
 --显示
 function UIBasePage:OnShow()
     self.gameObject:SetActive(true)

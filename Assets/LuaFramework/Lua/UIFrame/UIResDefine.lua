@@ -27,7 +27,12 @@ UICollider =
 UIPageID = 
 {
     --INVALID = "invalid",
-    Prompt = "Controller/PromptCtrl"
+    Prompt = "Controller/PromptCtrl",
+    UITopBar = "Test/UITest/UITopBar",
+    UIMainPage = "Test/UITest/UIMainPage",
+    UINotice = "Test/UITest/UINotice",
+    UISkillPage = "Test/UITest/UISkillPage",
+    UIBattle = "Test/UITest/UIBattle",
 }
 
 --endregion

@@ -57,12 +57,6 @@
     <Reference Include="UnityEngine.Networking">
       <HintPath>Library\UnityAssemblies\UnityEngine.Networking.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEngine.Networking">
-      <HintPath>Library\UnityAssemblies\UnityEngine.Networking.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.UI">
-      <HintPath>Library\UnityAssemblies\UnityEngine.UI.dll</HintPath>
-    </Reference>
     <Reference Include="UnityEditor">
       <HintPath>Library\UnityAssemblies\UnityEditor.dll</HintPath>
     </Reference>
@@ -109,6 +103,7 @@
     <Compile Include="Assets\LuaFramework\Scripts\ObjectPool\ObjectPool.cs" />
     <Compile Include="Assets\LuaFramework\Scripts\ObjectPool\TestObjectClass.cs" />
     <Compile Include="Assets\LuaFramework\Scripts\Utility\LuaHelper.cs" />
+    <Compile Include="Assets\LuaFramework\Scripts\Utility\UIHelper.cs" />
     <Compile Include="Assets\LuaFramework\Scripts\Utility\Util.cs" />
     <Compile Include="Assets\LuaFramework\Scripts\View\AppView.cs" />
     <Compile Include="Assets\LuaFramework\ToLua\BaseType\LuaInterface_EventObjectWrap.cs" />
@@ -218,6 +213,7 @@
     <Compile Include="Assets\LuaFramework\ToLua\Source\Generate\LuaFramework_UtilWrap.cs" />
     <Compile Include="Assets\LuaFramework\ToLua\Source\Generate\LuaInterface_DebuggerWrap.cs" />
     <Compile Include="Assets\LuaFramework\ToLua\Source\Generate\ManagerWrap.cs" />
+    <Compile Include="Assets\LuaFramework\ToLua\Source\Generate\UIHelperWrap.cs" />
     <Compile Include="Assets\LuaFramework\ToLua\Source\Generate\UnityEngine_AnimationBlendModeWrap.cs" />
     <Compile Include="Assets\LuaFramework\ToLua\Source\Generate\UnityEngine_AnimationClipWrap.cs" />
     <Compile Include="Assets\LuaFramework\ToLua\Source\Generate\UnityEngine_AnimationStateWrap.cs" />

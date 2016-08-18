@@ -104,6 +104,8 @@ namespace LuaFramework {
                 //新添加的lua目录
                 loader.AddBundle("lua/lua_manager.unity3d");
                 loader.AddBundle("lua/lua_uiframe.unity3d");
+                loader.AddBundle("lua/lua_test_uitest.unity3d");
+                loader.AddBundle("lua/lua_test.unity3d");
             }
         }
 

@@ -17,46 +17,46 @@ AssetBundleManifest:
       Name: lua/lua_lpeg.unity3d
       Dependencies: {}
     Info_5:
-      Name: lua/lua_manager.unity3d
-      Dependencies: {}
-    Info_6:
       Name: lua/lua_misc.unity3d
       Dependencies: {}
-    Info_7:
+    Info_6:
       Name: lua/lua_protobuf.unity3d
       Dependencies: {}
-    Info_8:
+    Info_7:
       Name: lua/lua_socket.unity3d
       Dependencies: {}
-    Info_9:
+    Info_8:
       Name: lua/lua_system.unity3d
       Dependencies: {}
-    Info_10:
+    Info_9:
       Name: lua/lua_uiframe.unity3d
       Dependencies: {}
-    Info_11:
+    Info_10:
       Name: lua/lua_unityengine.unity3d
       Dependencies: {}
-    Info_12:
+    Info_11:
       Name: lua/lua_view.unity3d
       Dependencies: {}
-    Info_13:
+    Info_12:
       Name: lua/lua_3rd_cjson.unity3d
       Dependencies: {}
-    Info_14:
+    Info_13:
       Name: lua/lua_3rd_luabitop.unity3d
       Dependencies: {}
-    Info_15:
+    Info_14:
       Name: lua/lua_3rd_pbc.unity3d
       Dependencies: {}
-    Info_16:
+    Info_15:
       Name: lua/lua_3rd_pblua.unity3d
       Dependencies: {}
-    Info_17:
+    Info_16:
       Name: lua/lua_3rd_sproto.unity3d
       Dependencies: {}
-    Info_18:
+    Info_17:
       Name: lua/lua_system_reflection.unity3d
+      Dependencies: {}
+    Info_18:
+      Name: lua/lua_test_uitest.unity3d
       Dependencies: {}
     Info_19:
       Name: lua/lua.unity3d
@@ -75,4 +75,11 @@ AssetBundleManifest:
       Dependencies: {}
     Info_23:
       Name: shared_asset.unity3d
+      Dependencies: {}
+    Info_24:
+      Name: uiprefab.unity3d
+      Dependencies:
+        Dependency_0: anim.unity3d
+    Info_25:
+      Name: anim.unity3d
       Dependencies: {}
